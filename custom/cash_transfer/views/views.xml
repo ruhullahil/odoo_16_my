@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="cash_transfer.list">
+      <field name="name">cash_transfer list</field>
+      <field name="model">cash_transfer.cash_transfer</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="cash_transfer.action_window">
+      <field name="name">cash_transfer window</field>
+      <field name="res_model">cash_transfer.cash_transfer</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="cash_transfer.action_server">
+      <field name="name">cash_transfer server</field>
+      <field name="model_id" ref="model_cash_transfer_cash_transfer"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="cash_transfer" id="cash_transfer.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="cash_transfer.menu_1" parent="cash_transfer.menu_root"/>
+    <menuitem name="Menu 2" id="cash_transfer.menu_2" parent="cash_transfer.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="cash_transfer.menu_1_list" parent="cash_transfer.menu_1"
+              action="cash_transfer.action_window"/>
+    <menuitem name="Server to list" id="cash_transfer" parent="cash_transfer.menu_2"
+              action="cash_transfer.action_server"/>
+-->
+  </data>
+</odoo>

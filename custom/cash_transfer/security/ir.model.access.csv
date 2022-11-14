@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cash_transfer_admin,cash_transfer.cash_transfer,model_cash_transfer,base.group_user,1,1,1,1
+access_cash_transfer_report_admin,cash_transfer.cash_transfer_report,model_cash_transfer_report,base.group_user,1,1,1,1
+access_sale_purchase_stock_report_admin,cash_transfer.sale_purchase_stock_report,model_sale_purchase_stock_report,base.group_user,1,1,1,1

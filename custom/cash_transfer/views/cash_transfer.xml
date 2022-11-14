@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cash_transfer_view_form" model="ir.ui.view">
+        <field name="name">cash_transfer_view_form</field>
+        <field name="model">cash.transfer</field>
+        <field name="arch" type="xml">
+            <form string="cash_transfer_form">
+                <header>
+                    <button name="button_approve" type="object" string="Approved"
+                            groups="account.group_account_manager" attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_journal" type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o" attrs="{'invisible': [('account_move_id', '=', False)]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">journal</span>
+                                <span class="o_stat_text">Entry</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <h3>
+                            <field name="transaction_type" required="1"/>
+                        </h3>
+                    </div>
+                    <group>
+
+                        <group>
+                            <field name="partner_id" widget="res_partner_many2one"
+                                   context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                   required="1"/>
+                            <field name="journal_name" required="1" readonly="1" force_save="1" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="label"/>
+
+                        </group>
+                        <group>
+                            <field name="date" readonly="1" force_save="1"/>
+                            <field name="account_name" required="1" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="amount" required="1"/>
+                            <field name="account_move_id" invisible="1"/>
+                        </group>
+
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="cash_transfer_view_tree" model="ir.ui.view">
+        <field name="name">cash_transfer_view_tree</field>
+        <field name="model">cash.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="cash_transfer_tree">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date"/>
+                <field name="transaction_type"/>
+                <field name="amount"/>
+                <field name="state" decoration-success="state == 'approve'" decoration-info="state == 'pending'"
+                       widget="badge" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="cash_transfer_action_action" model="ir.actions.act_window">
+        <field name="name">Cash Transfer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cash.transfer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="menu_cash_transfer_root" name="Cash Transfer" sequence="1"/>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="menu_cash_transfer_categ" name="Transfer" parent="menu_cash_transfer_root" sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_cash_transfer" name="Cash" parent="menu_cash_transfer_categ" action="cash_transfer_action_action" sequence="1"/>
+</odoo>

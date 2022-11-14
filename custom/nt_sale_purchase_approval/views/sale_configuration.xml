@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="approval_configuration_view_form" model="ir.ui.view">
+        <field name="name">approval_configuration_view_form</field>
+        <field name="model">nt.approval.configuration</field>
+        <field name="arch" type="xml">
+            <form string="approval_configuration_form" create="0">
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                           options="{'preview_image': 'image_1920'}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="approval_type"/>
+                        </group>
+                        <group>
+                            <field name="company_id" readonly="1" force_save="1"/>
+
+                        </group>
+                    </group>
+                    <group name="approves" string="Approvers">
+                        <group>
+                            <field name="minimum_count"/>
+                        </group>
+                        <field name="user_line">
+                            <tree editable="bottom">
+                                <field name="company_id" invisible="1"/>
+                                <field name="name"/>
+                                <field name="user_id"/>
+                                <field name="is_required"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+
+        </field>
+
+    </record>
+    <record id="approval_configuration_view_tree" model="ir.ui.view">
+        <field name="name">sale_config_view_tree</field>
+        <field name="model">nt.approval.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="sale_config_tree" create="1">
+                <field name="name"/>
+                <field name="approval_type"/>
+                <field name="user_line"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="approval_configuration_view_kanan" model="ir.ui.view">
+        <field name="name">approval_configuration_view.kanban</field>
+        <field name="model">nt.approval.configuration</field>
+        <field name="arch" type="xml">
+            <kanban create="0">
+                <field name="name"/>
+                <field name="approval_type"/>
+                <field name="id"/>
+                <field name="image_1920"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <t t-if="record.id">
+                                <img t-att-src="kanban_image('nt.approval.configuration', 'image_1920', record.id.raw_value)"
+                                     alt="Approvals Types Image" class="oe_kanban_avatar float-start me-3" width="64"
+                                     height="64"/>
+                            </t>
+                            <div class="oe_module_desc">
+                                <h4 class="o_kanban_record_title">
+                                    <field name="approval_type"/>
+                                    Approvals
+                                </h4>
+                                <p class="oe_module_name">
+                                    <field name="name"/>
+                                </p>
+                                <div class="oe_module_action" t-if="!selection_mode">
+                                    <!--                                    <button type="object" class="btn btn-primary btn-sm" name="create_request" context="{'category_id':'active_id'}">New Request</button>-->
+                                    <button type="object" class="btn btn-sm btn-secondary float-end"
+                                            name="get_pending_approvals">To Review:
+                                        <field name="pending_approval_count"/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="configuration_view_action" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">nt.approval.configuration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="over_view_approval_action" model="ir.actions.act_window">
+        <field name="name">Overview</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">nt.approval.configuration</field>
+        <field name="view_mode">kanban</field>
+        <field name="domain">[('active','=',True)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nt_approval_configuration,nt_sale_purchase_approval.nt_sale_purchase_approval,model_nt_approval_configuration,base.group_user,1,1,1,1
+access_approval_config_user_line,nt_sale_purchase_approval.approval_config_user_line,model_approval_config_user_line,base.group_user,1,1,1,1
+access_nt_approval_orders,nt_sale_purchase_approval.nt_approval_orders,model_nt_approval_orders,base.group_user,1,1,1,1
+access_nt_approval_user,nt_sale_purchase_approval.nt_approval_user,model_nt_approval_user,base.group_user,1,1,1,1
+access_nt_approval_orders_lines,nt_sale_purchase_approval.nt_approval_orders_lines,model_nt_approval_orders_lines,base.group_user,1,1,1,1
+access_nt_sale_approve_user,nt_sale_purchase_approval.nt_sale_approve_user,model_nt_sale_approve_user,base.group_user,1,1,1,1

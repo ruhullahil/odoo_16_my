@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="sale_purchase_approval_root" name="Approvals" sequence="10"/>
+            <menuitem id="sale_purchase_approval_configuration_root" parent="sale_purchase_approval_root"
+                      name="Configuration" sequence="12"/>
+                <menuitem id="approval_settings" name="Settings" parent="sale_purchase_approval_configuration_root"
+                          action="nt_sale_purchase_approval.action_res_config_setting_s_p_a_view" groups="base.group_system" sequence="1"/>
+                <menuitem id="approval_type_confiquration" name="Type Configuration" parent="sale_purchase_approval_configuration_root"
+                          action="nt_sale_purchase_approval.configuration_view_action" sequence="2"/>
+
+            <menuitem id="config_overview_categ_menu" name="Overview" parent="sale_purchase_approval_root" sequence="1"/>
+                <menuitem id="config_overview_menu" name="Overview" parent="config_overview_categ_menu" action="nt_sale_purchase_approval.over_view_approval_action" sequence="1"/>
+            <menuitem id="approval_order_categ_menu" name="Approvals" parent="sale_purchase_approval_root" sequence="2"/>
+                <menuitem id="config_sale_approve_menu" name="Sale" parent="approval_order_categ_menu" action="nt_sale_purchase_approval.nt_approval_order_sale_action" sequence="1"/>
+                <menuitem id="config_purchase_approve_menu" name="Purchase" parent="approval_order_categ_menu" action="nt_sale_purchase_approval.nt_approval_order_purchase_action" sequence="2"/>
+                <menuitem id="config_invoice_approve_menu" name="Invoice" parent="approval_order_categ_menu" action="nt_sale_purchase_approval.nt_approval_order_invoice_action" sequence="3"/>
+                <menuitem id="config_bill_approve_menu" name="Bill" parent="approval_order_categ_menu" action="nt_sale_purchase_approval.nt_approval_order_bill_action" sequence="4"/>
+
+
+    </data>
+</odoo>

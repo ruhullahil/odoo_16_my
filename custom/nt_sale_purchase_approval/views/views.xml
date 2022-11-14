@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="nt_sale_purchase_approval.list">
+      <field name="name">nt_sale_purchase_approval list</field>
+      <field name="model">nt_sale_purchase_approval.nt_sale_purchase_approval</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="nt_sale_purchase_approval.action_window">
+      <field name="name">nt_sale_purchase_approval window</field>
+      <field name="res_model">nt_sale_purchase_approval.nt_sale_purchase_approval</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="nt_sale_purchase_approval.action_server">
+      <field name="name">nt_sale_purchase_approval server</field>
+      <field name="model_id" ref="model_nt_sale_purchase_approval_nt_sale_purchase_approval"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="nt_sale_purchase_approval" id="nt_sale_purchase_approval.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="nt_sale_purchase_approval.menu_1" parent="nt_sale_purchase_approval.menu_root"/>
+    <menuitem name="Menu 2" id="nt_sale_purchase_approval.menu_2" parent="nt_sale_purchase_approval.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="nt_sale_purchase_approval.menu_1_list" parent="nt_sale_purchase_approval.menu_1"
+              action="nt_sale_purchase_approval.action_window"/>
+    <menuitem name="Server to list" id="nt_sale_purchase_approval" parent="nt_sale_purchase_approval.menu_2"
+              action="nt_sale_purchase_approval.action_server"/>
+-->
+  </data>
+</odoo>

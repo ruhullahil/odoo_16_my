@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <report
+            id="report_cash_transfer"
+            model="cash.transfer.report"
+            string="Cash Transfer Report"
+            name="cash_transfer.report_cash_transfer_report_view"
+            report_type="qweb-pdf"/>
+
+    <template id="cash_transfer.report_cash_transfer_report_view">
+        <t t-call="web.html_container">
+
+            <div class="header" style="border-bottom: 1px solid black;">
+                <h3 class="text-center"><t t-esc="report_name"/>
+                    <br></br>
+                    <span style="font-size: 14px;"><strong>From</strong>:
+                        <t t-esc="start_date"/>
+                        <strong>To</strong>:
+                        <t t-esc="end_date"/>
+                    </span>
+                </h3>
+            </div>
+
+            <div class="article mt0 o_report_layout_standard">
+                <table class="table table-condensed table-bordered"
+                       style="font-size: 12px; border: 1px solid black;">
+                    <thead>
+
+                        <th class="text-center p-0 m-0" style="width: 18%; border: 1px solid black; background-color:lightgray">Date
+                        </th>
+                        <th class="text-center p-0 m-0" style="width: 12%; border: 1px solid black; background-color:lightgray">Name</th>
+                        <th class="text-center p-0 m-0" style="width: 20%; border: 1px solid black; background-color:lightgray">Partner</th>
+                        <th class="text-center p-0 m-0" style="width: 20%; border: 1px solid black;background-color:lightgray">Account</th>
+                        <th class="text-center p-0 m-0" style="width: 15%; border: 1px solid black;background-color:lightgray">Amount</th>
+                        <th class="text-center p-0 m-0" style="width: 15%; border: 1px solid black;background-color:lightgray">status</th>
+
+                    </thead>
+                    <tbody>
+                        <t t-foreach="records" t-as="doc">
+                                <tr>
+                                    <td class="text-center p-0 m-0" style="border: 1px solid black;">
+                                        <span t-esc="doc.date"/>
+                                    </td>
+                                    <td class="text-center p-0 m-0" style="border: 1px solid black;">
+                                        <span t-esc="doc.name"/>
+                                    </td>
+                                    <td class="text-center p-0 m-0" style="border: 1px solid black;">
+                                        <span t-esc="doc.partner_id.name"/>
+                                    </td>
+                                    <td class="text-center p-0 m-0" style="border: 1px solid black;">
+                                        <span t-esc="doc.account_name.name"/>
+                                    </td>
+                                    <td class="text-center p-0 m-0" style="border: 1px solid black;">
+                                        <span t-esc="doc.amount" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                    </td>
+                                    <td class="text-center p-0 m-0" style="border: 1px solid black;">
+                                        <span t-esc="doc.state"/>
+                                    </td>
+
+
+                                </tr>
+
+                            </t>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                <div class="row text-center">
+                    <div class="col col-12 text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+</odoo>
