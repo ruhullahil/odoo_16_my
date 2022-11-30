@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+purchase.access_purchase_order,purchase.order,purchase.model_purchase_order,purchase.group_purchase_user,1,0,0,0
+purchase.access_purchase_order_manager,purchase.order,purchase.model_purchase_order,purchase.group_purchase_manager,1,0,0,0
+purchase.access_purchase_order_invoicing_payments_readonly,purchase.order,purchase.model_purchase_order,account.group_account_readonly,1,0,0,0
+purchase.access_purchase_order_invoicing_payments,purchase.order,purchase.model_purchase_order,account.group_account_invoice,1,0,0,0
+purchase.access_purchase_order_portal,purchase.order.portal,purchase.model_purchase_order,base.group_portal,1,0,0,0
+access_purchase_order_procurement,purchase.order.procurement,purchase.model_purchase_order,group_purchase_approval_procurement_team,1,1,1,0
+access_purchase_order_coo,purchase.order.coo,purchase.model_purchase_order,group_coo,1,1,0,0
+access_purchase_order_md,purchase.order.md,purchase.model_purchase_order,group_md,1,1,0,0
+access_purchase_order_vendor,purchase.order.vendor,purchase.model_purchase_order,group_vendor,1,0,0,0
+purchase.access_purchase_order_line,purchase.order.line user,purchase.model_purchase_order_line,purchase.group_purchase_user,1,0,0,0
+purchase.access_purchase_order_line_manager,purchase.order.line,purchase.model_purchase_order_line,purchase.group_purchase_manager,1,0,0,0
+purchase.access_purchase_order_line_invoicing_payments_readonly,purchase.order.line,purchase.model_purchase_order_line,account.group_account_readonly,1,0,0,0
+purchase.access_purchase_order_line_invoicing_payments,purchase.order.line,purchase.model_purchase_order_line,account.group_account_invoice,1,0,0,0
+purchase.access_purchase_order_line_portal,purchase.order.line.portal,purchase.model_purchase_order_line,base.group_portal,1,0,0,0
+purchase.access_purchase_order_line_portal,purchase.order.line.portal,purchase.model_purchase_order_line,base.group_portal,1,0,0,0
+access_purchase_order_line_procurement,purchase.order.line.procurement,purchase.model_purchase_order_line,group_purchase_approval_procurement_team,1,1,1,0
+access_purchase_order_line_coo,purchase.order.line.coo,purchase.model_purchase_order_line,group_coo,1,0,0,0
+access_purchase_order_line_md,purchase.order.line.md,purchase.model_purchase_order_line,group_md,1,0,0,0
+access_purchase_order_line_vendor,purchase.order.line.vendor,purchase.model_purchase_order_line,group_vendor,1,0,0,0

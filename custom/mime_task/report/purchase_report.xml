@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="mime_task.paper_format_purchase_report_custom" model="report.paperformat">
+            <field name="name">Sale Summary</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="page_width">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_right">7</field>
+            <field name="margin_left">7</field>
+            <field name="header_line" eval="True"/>
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="report_purchase_report"
+                model="purchase.order"
+                string="Purchase Order Custom"
+                name="mime_task.report_purchase_report_custom_view"
+                report_type="qweb-pdf"
+                menu="True"/>
+        <!--                paperformat="mime_task.paper_format_purchase_report_custom"-->
+
+        <template id="mime_task.purchase_layout_custom">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+
+            <div class="header">
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+
+                    <div class="col-4 offset-0 text-right">
+
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 55px;"
+                             alt="Logo"/>
+                    </div>
+                </div>
+            </div>
+            <div class="article pt-0 mt-0" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-raw="0"/>
+            </div>
+            <div class="footer mb-0 pb-0">
+                <div style="border-top: 1px solid #ffff;">
+                    <div class="row pb-10">
+                        <div class="text-left col-6 text-left" style="font-size: 10px;">
+                            <p>
+                                <strong>
+                                    <t t-esc="company.name"/>
+                                </strong>
+                                <br/>
+                                <t t-esc="company.street"/>,
+                                <t t-esc="company.street2"/>,
+                                <t t-esc="company.state_id.name"/>,
+                                <t t-esc="company.country_id.name"/>
+                                <br/>
+                                Tel:<t t-esc="company.phone"/>,Cell:<t t-esc="company.mobile"/>,E-mail:
+                                <t t-esc="company.email"/>
+
+                            </p>
+                            <br/>
+
+                        </div>
+                        <div class="text-left col-6 text-right">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </template>
+
+        <template id="mime_task.report_purchase_report_custom_view">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="row pt-0 mt-0">
+                            <div class="col-8 text-left">
+                                <h3>Purchase Order</h3>
+                            </div>
+                            <div class="col-4 text-left" style="font-size: 12px;">
+                                <p>Date:
+                                    <t t-esc="doc.date_order"/>
+                                    <br/>
+                                    Po NO:&amp;nbsp;
+                                    <t t-esc="doc.name"/>
+                                    <br/>
+                                    QTN Ref:&amp;nbsp;
+                                    <t t-esc="doc.partner_ref"/>
+                                </p>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row mt-3 pt-3">
+                            <div class="col-6">
+                                <table class="table table-condensed table-bordered"
+                                       style="font-size: 12px; border: 1px solid black;">
+                                    <tr>
+                                        <td class="text-center p-0 m-0"
+                                            style="width: 80%; border: 1px solid black; background-color:gray;">Bill
+                                            To
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left p-0 m-0" colspan="1"
+                                            style="background-color:#ffff; border: 1px solid black;">
+                                            <p>
+                                                <strong>
+                                                    <t t-esc="doc.company_id.name"/>
+                                                </strong>
+                                                <br/>
+                                                <t t-esc="doc.company_id.street"/>,
+                                                <t t-esc="doc.company_id.street2"/>,
+                                                <t t-esc="doc.company_id.state_id.name"/>,
+                                                <t t-esc="doc.company_id.country_id.name"/>
+                                                <br/>
+                                                <i class="fa fa-phone"/>:
+                                                <t t-esc="doc.company_id.phone"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="col-2">
+
+                            </div>
+                            <div class="col-4">
+                                <table class="table table-condensed table-bordered"
+                                       style="font-size: 12px; border: 1px solid black;">
+                                    <tr>
+                                        <td class="text-center p-0 m-0"
+                                            style="width: 80%; border: 1px solid black; background-color:gray;">Bill
+                                            To
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left p-0 m-0" colspan="1"
+                                            style="background-color:#ffff; border: 1px solid black;">
+                                            <p>
+                                                <strong>
+                                                    <t t-esc="doc.company_id.name"/>
+                                                </strong>
+                                                <br/>
+                                                <t t-esc="doc.company_id.street"/>,
+                                                <t t-esc="doc.company_id.street2"/><br/>
+                                                <t t-esc="doc.company_id.state_id.name"/><br/>
+                                                <t t-esc="doc.company_id.country_id.name"/>
+                                                <br/>
+                                                <i class="fa fa-phone"/>:
+                                                <t t-esc="doc.company_id.phone"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </t>
+
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

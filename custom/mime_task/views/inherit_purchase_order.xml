@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_form_inherit_procurement" model="ir.ui.view">
+        <field name="name">inherit.purchase_order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_rfq_send'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_rfq_send'][2]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_rfq_send'][3]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team,mime_task.group_coo
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='print_quotation'][2]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team,mime_task.group_coo
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_confirm'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_coo</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_confirm'][2]" position="attributes">
+                <attribute name="groups">mime_task.group_coo</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_approve'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_md</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_create_invoice'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_create_invoice'][2]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+
+            <!--            <xpath expr="//button[@name='confirm_reminder_mail'][1]" position="attributes">-->
+            <!--                <attribute name="invisible">True</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//button[@name='button_done'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_cancel'][1]" position="attributes">
+                <attribute name="groups">mime_task.group_purchase_approval_procurement_team</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="can_edit" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="attrs">{'readonly': ['|',('can_edit', '=', False),('state', 'in', ('done', 'cancel'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="attrs">{'readonly': [('can_edit', '=', False)]}</attribute>
+            </xpath>
+        </field>
+
+    </record>
+
+    <!--        <record id="purchase_order_form_inherit_coo" model="ir.ui.view">-->
+    <!--            <field name="name">inherit.purchase_order.form</field>-->
+    <!--            <field name="model">purchase.order</field>-->
+    <!--            <field name="groups_id" eval="[Command.link(ref('group_coo'))]"/>-->
+    <!--            <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+    <!--            <field name="priority" eval="8"/>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <xpath expr="//button[@name='action_rfq_send'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='action_rfq_send'][2]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='button_approve'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='action_create_invoice'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='action_rfq_send'][3]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='confirm_reminder_mail'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='button_done'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='button_draft'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--            </field>-->
+    <!--        </record>-->
+    <!--        <record id="purchase_order_form_inherit_md" model="ir.ui.view">-->
+    <!--            <field name="name">inherit.purchase_order.form</field>-->
+    <!--            <field name="model">purchase.order</field>-->
+    <!--            <field name="groups_id" eval="[Command.link(ref('group_md'))]"/>-->
+    <!--            <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+    <!--            <field name="priority" eval="8"/>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <xpath expr="//button[@name='action_rfq_send'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='action_rfq_send'][2]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='button_confirm'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='button_confirm'][2]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='action_create_invoice'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='action_rfq_send'][3]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--                <xpath expr="//button[@name='confirm_reminder_mail'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--&lt;!&ndash;                <xpath expr="//button[@name='button_done'][1]" position="attributes">&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <attribute name="invisible">True</attribute>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </xpath>&ndash;&gt;-->
+    <!--                <xpath expr="//button[@name='button_draft'][1]" position="attributes">-->
+    <!--                    <attribute name="invisible">True</attribute>-->
+    <!--                </xpath>-->
+    <!--            </field>-->
+    <!--        </record>-->
+
+</odoo>
