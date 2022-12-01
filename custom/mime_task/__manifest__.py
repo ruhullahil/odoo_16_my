@@ -30,7 +30,9 @@
         # 'views/views.xml',
         # 'views/templates.xml',
         'views/inherit_purchase_order.xml',
+        'views/inherit_res_users.xml',
         'report/purchase_report.xml',
+        'report/purchase_order_report_custom.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

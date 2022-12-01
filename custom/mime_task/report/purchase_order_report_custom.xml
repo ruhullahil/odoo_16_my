@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QWeb Reports -->
+    <!-- NAME & FILE_NAME should be the same -->
+    <record id="paperformat_purchase_custom_report" model="report.paperformat">
+        <field name="name">Sale Summary</field>
+        <!--        <field name="default" eval="False"/>-->
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_right">5</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+    <report
+            id="mime_task.purchase_order_report"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            string="Purchase Report Custom"
+            name="mime_task.purchase_order_custom_view"
+            menu="True"
+    />
+    <!--            paperformat="mime_task.paperformat_purchase_custom_report"-->
+    <template id="mime_task.purchase_order_custom_view">
+
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="header p-0 m-0">
+                        <div class="row p-0 m-0">
+                            <div class="col-8">
+
+                            </div>
+                            <div class="col-4 mb4 text-right">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)"
+                                     style="max-height: 45px;" alt="Logo"/>
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+                                <!--                                <h1>test</h1>-->
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page mt-n5 pt-n5">
+                        <div class="row p-0 m-0">
+                            <div class="col-8 text-left">
+                                <h3>Purchase Order</h3>
+                            </div>
+                            <div class="col-4 text-left" style="font-size: 12px;">
+                                <p>Date:
+                                    <t t-esc="doc.date_order"/>
+                                    <br/>
+                                    Po NO &amp;nbsp;:&amp;nbsp;
+                                    <t t-esc="doc.name"/>
+                                    <br/>
+                                    QTN Ref &amp;nbsp;:&amp;nbsp;
+                                    <t t-esc="doc.partner_ref"/>
+                                </p>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row mt-1 pt-1">
+                            <div class="col-6">
+                                <table class="table table-condensed table-bordered"
+                                       style="font-size: 12px; border: 1px solid black;">
+                                    <tr>
+                                        <td class="text-center p-0 m-0" colspan="1"
+                                            style="width: 80%; border: 1px solid black; background-color:gray;">PO
+                                            Issued
+                                            To
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left p-0 m-0" colspan="1"
+                                            style="background-color:#ffff; border: 1px solid black;">
+                                            <table class="table table-condensed p-0 m-0" style="font-size: 10px;">
+                                                <tr class="p-0 m-0">
+                                                    <td class="text-left p-0 m-0"
+                                                        style="width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        Vendor Name
+                                                    </td>
+                                                    <td class="text-left p-0 m-0"
+                                                        style=" width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        <t t-esc="doc.partner_id.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr class="p-0 m-0">
+                                                    <td class="text-left p-0 m-0"
+                                                        style="width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        Address
+                                                    </td>
+                                                    <td class="text-left p-0 m-0"
+                                                        style=" width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        <t t-esc="doc.partner_id.street"/>,<t
+                                                            t-esc="doc.partner_id.street2"/>,<t
+                                                            t-esc="doc.partner_id.state_id.name"/>,
+                                                        <t t-esc="doc.partner_id.country_id.name"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="p-0 m-0">
+                                                    <td class="text-left p-0 m-0"
+                                                        style="width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        Phone
+                                                    </td>
+                                                    <td class="text-left p-0 m-0"
+                                                        style=" width: 50%; background-color:#ffff; border: 1px solid white;">
+
+                                                        <t t-esc="doc.partner_id.phone"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="p-0 m-0">
+                                                    <td class="text-left p-0 m-0"
+                                                        style="width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        Mobile
+                                                    </td>
+                                                    <td class="text-left p-0 m-0"
+                                                        style=" width: 50%; background-color:#ffff; border: 1px solid white;">
+
+                                                        <t t-esc="doc.partner_id.mobile"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="p-0 m-0">
+                                                    <td class="text-left p-0 m-0"
+                                                        style="width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        E-mail
+                                                    </td>
+                                                    <td class="text-left p-0 m-0"
+                                                        style=" width: 50%; background-color:#ffff; border: 1px solid white;">
+                                                        <t t-esc="doc.partner_id.email"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="col-2">
+
+                            </div>
+                            <div class="col-4">
+                                <table class="table table-condensed table-bordered"
+                                       style="font-size: 12px; border: 1px solid black;">
+                                    <tr>
+                                        <td class="text-center p-0 m-0"
+                                            style="width: 80%; border: 1px solid black; background-color:gray;">Bill
+                                            To
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left p-0 m-0" colspan="1"
+                                            style="background-color:#ffff; border: 1px solid black; font-size: 10px;">
+                                            <p>
+                                                <strong>
+                                                    <t t-esc="doc.company_id.name"/>
+                                                </strong>
+                                                <br/>
+                                                <t t-esc="doc.company_id.street"/>,
+                                                <t t-esc="doc.company_id.street2"/>
+                                                <br/>
+                                                <t t-esc="doc.company_id.state_id.name"/>
+                                                <br/>
+                                                <t t-esc="doc.company_id.country_id.name"/>
+                                                <br/>
+                                                <i class="fa fa-phone"/>&amp;nbsp; : &amp;nbsp;
+                                                <t t-esc="doc.company_id.phone"/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                        <t t-set="mails"
+                           t-value="doc.message_ids.filtered(lambda tx: tx.message_type in ('comment','email'))"/>
+                        <div class="pt-1 mt-1 m-0 p-0">
+                            <h5>
+                                <u>Subject:
+                                    <t t-esc="mails[0].subject if mails else '-'"/>
+                                </u>
+                            </h5>
+                            <div>
+                                <t t-foreach="mails" t-as="mail">
+                                    <span t-raw="mail.body"/>
+                                </t>
+                            </div>
+
+
+                        </div>
+                        <div class="mt-1 pt-0">
+                            <table class="table table-condensed table-bordered"
+                                   style="font-size: 12px; border: 1px solid black;">
+                                <tr>
+                                    <td class="text-center p-0 m-0" colspan="1"
+                                        style="width: 25%; border: 1px solid black; background-color:gray;">Component
+                                    </td>
+                                    <td class="text-center p-0 m-0" colspan="1"
+                                        style="width: 15%; border: 1px solid black; background-color:gray;">Uom
+                                    </td>
+                                    <td class="text-center p-0 m-0" colspan="1"
+                                        style="width: 15%; border: 1px solid black; background-color:gray;">Unit
+                                    </td>
+                                    <td class="text-center p-0 m-0" colspan="1"
+                                        style="width: 20%; border: 1px solid black; background-color:gray;">Unit Price
+                                    </td>
+                                    <td class="text-right p-0 m-0 pr-3" colspan="1"
+                                        style="width: 22%; border: 1px solid black; background-color:gray;">Total
+                                    </td>
+
+                                </tr>
+                                <t t-foreach="doc.order_line" t-as="line">
+                                    <tr>
+                                        <td class="text-center p-0 m-0" colspan="1"
+                                            style="width: 25%; border: 1px solid black; background-color:white;">
+                                            <t t-esc="line.product_id.name"/>
+                                        </td>
+                                        <td class="text-center p-0 m-0" colspan="1"
+                                            style="width: 15%; border: 1px solid black; background-color:white;">
+                                            <t t-esc="line.product_uom.name"/>
+                                        </td>
+                                        <td class="text-center p-0 m-0" colspan="1"
+                                            style="width: 15%; border: 1px solid black; background-color:white;">
+                                            <t t-esc="line.product_uom_qty"/>
+                                        </td>
+                                        <td class="text-center p-0 m-0" colspan="1"
+                                            style="width: 20%; border: 1px solid black; background-color:white;">
+                                            <t t-esc="line.price_unit"/>
+                                        </td>
+                                        <td class="text-right p-0 m-0 pr-3" colspan="1"
+                                            style="width: 22%; border: 1px solid black; background-color:white;">
+                                            <t t-esc="line.price_subtotal"
+                                               t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td class="text-center p-0 m-0" colspan="4"
+                                        style="width: 25%; border: 1px solid black; background-color:white;">
+                                        <strong>Sub-Total</strong>
+                                    </td>
+
+                                    <td class="text-right p-0 m-0 pr-3" colspan="1"
+                                        style="width: 22%; border: 1px solid black; background-color:white;">
+                                        <t t-esc="doc.amount_untaxed"
+                                           t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center p-0 m-0" colspan="4"
+                                        style="width: 25%; border: 1px solid black; background-color:white;">
+                                        <strong>Grand Total For Service Exclude VAT but Include ATI</strong>
+                                    </td>
+
+                                    <td class="text-right p-0 m-0 pr-3" colspan="1"
+                                        style="width: 22%; border: 1px solid black; background-color:white;">
+                                        <t t-esc="doc.amount_untaxed"
+                                           t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center p-0 m-0" colspan="4"
+                                        style="width: 25%; border: 1px solid black; background-color:white;">
+                                        <strong>VAT</strong>
+                                    </td>
+
+                                    <td class="text-right p-0 m-0 pr-3" colspan="1"
+                                        style="width: 22%; border: 1px solid black; background-color:white;">
+                                        <t t-esc="doc.amount_tax"
+                                           t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center p-0 m-0" colspan="4"
+                                        style="width: 25%; border: 1px solid black; background-color:white;">
+                                        <strong>Grand Total</strong>
+                                    </td>
+
+                                    <td class="text-right p-0 m-0 pr-3" colspan="1"
+                                        style="width: 22%; border: 1px solid black; background-color:white;">
+                                        <t t-esc="doc.amount_total"
+                                           t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="m-2 p-2">
+                        <table class="table table-condensed table-bordered"
+                               style="font-size: 12px; border: 1px solid white;">
+                            <tr class="p-0 m-0">
+                                <td class="text-left p-0 m-0" colspan="1"
+                                    style="width: 35%; border: 1px solid white; background-color:white;">
+                                    <div style="font-size: 12px;">
+                                        <p>
+                                            <strong>Total Price:
+                                                <t t-esc="doc.amount_total"
+                                                   t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </strong>
+                                        </p>
+                                        <p>
+                                            <strong>
+                                                In Word:
+                                                <span t-esc="doc.currency_id.amount_to_text(doc.amount_total)"/>
+                                            </strong>
+                                        </p>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr class="p-0 m-0">
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 35%; border: 1px solid white; background-color:white;">
+                                    <p>
+                                        <strong>STANDARD TERMS AND CONDITIONS:</strong>
+                                    </p>
+                                </td>
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 60%; border: 1px solid white; background-color:white;">
+                                    <!--                                    <t t-esc="doc.notes"/>-->
+                                    <span t-raw="doc.notes"/>
+                                </td>
+
+                            </tr>
+                            <tr class="p-0 m-0">
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 35%; border: 1px solid white; background-color:white;">
+                                    <p>
+                                        <strong>Payment Terms:</strong>
+                                    </p>
+                                </td>
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 60%; border: 1px solid white; background-color:white;">
+                                    <t t-esc="doc.payment_term_id.name if doc.payment_term_id else ''"/>
+                                    <!--                                    <span t-raw="doc.notes"/>-->
+                                </td>
+
+                            </tr>
+                            <tr class="p-0 m-0">
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 35%; border: 1px solid white; background-color:white;">
+                                    <p>
+                                        <strong>Bill Chalan:</strong>
+                                    </p>
+                                </td>
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 60%; border: 1px solid white; background-color:white;">
+                                    <!--                                    <t t-esc="doc.payment_term_id.name if doc.payment_term_id else ''"/>-->
+                                    <!--                                    <span t-raw="doc.notes"/>-->
+                                </td>
+
+                            </tr>
+                            <tr class="p-0 m-0">
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 35%; border: 1px solid white; background-color:white;">
+                                    <p>
+                                        <strong>Delivery Location:</strong>
+                                    </p>
+                                </td>
+                                <td class="text-left p-0 m-0 pr-3" colspan="1"
+                                    style="width: 60%; border: 1px solid white; background-color:white;">
+                                    <p>
+                                        <t t-esc="doc.picking_type_id.company_id.name"/>
+                                        <br/>
+                                        <t t-esc="doc.picking_type_id.company_id.street"/>
+                                        <br/>
+                                        <t t-esc="doc.picking_type_id.company_id.street2"/>
+                                        <br/>
+                                        <t t-esc="doc.company_id.state_id.name"/>
+                                        <br/>
+                                        <t t-esc="doc.picking_type_id.company_id.country_id.name"/>
+                                        <br/>
+                                        <t t-esc="doc.picking_type_id.company_id.partner_id.phone"/>
+                                        <br/>
+                                        <t t-esc="doc.picking_type_id.company_id.partner_id.mobile"/>
+                                        <br/>
+                                        <t t-esc="doc.picking_type_id.company_id.partner_id.email"/>
+
+                                    </p>
+                                    <!--                                    <span t-raw="doc.notes"/>-->
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="p-0 m-0" style="font-size: 11px;">
+                        <p>If the mentioned terms and conditions are acceptable to you, you are requested to sign the
+                            duplicate copy as a token of your acceptance.
+                        </p>
+                    </div>
+                    <div class="row p-0 m-0" style="font-size: 11px;">
+                        <div class="col-6">
+
+                            <img t-att-src="image_data_uri(doc.user_id.signature_hand)"
+                                 style="max-height: 4cm; max-width: 8cm;"/>
+                            <p>.................................................
+                                <br/>
+                                Administrator
+                                <br/>
+                                COO
+                                <br/>
+                                cc: CFO Digicon Telecommunication Limited
+                            </p>
+                        </div>
+
+                        <div class="col-6">
+                            <img t-att-src="image_data_uri(doc.user_id.signature_hand)"
+                                 style="max-height: 4cm; max-width: 8cm;"/>
+                            <p>.................................................
+                                <br/>
+                                Akash BA
+                                <br/>
+                                Managing Director
+                                <br/>
+                                cc: CFO Digicon Telecommunication Limited
+                            </p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="footer">
+                        <div class="row">
+                            <div class="text-left col-6 text-left" style="font-size: 10px;">
+                                <p>
+                                    <strong>
+                                        <t t-esc="doc.company_id.name"/>
+                                    </strong>
+                                    <br/>
+                                    <t t-esc="doc.company_id.street"/>,
+                                    <t t-esc="doc.company_id.street2"/>,
+                                    <t t-esc="doc.company_id.state_id.name"/>,
+                                    <t t-esc="doc.company_id.country_id.name"/>
+                                    <br/>
+                                    Tel:<t t-esc="doc.company_id.partner_id.phone"/>,Cell:<t
+                                        t-esc="doc.company_id.partner_id.mobile"/>,E-mail:
+                                    <t t-esc="doc.company_id.partner_id.email"/>
+
+                                </p>
+                                <br/>
+
+                            </div>
+                            <div class="text-left col-6 text-right">
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+
+</odoo>

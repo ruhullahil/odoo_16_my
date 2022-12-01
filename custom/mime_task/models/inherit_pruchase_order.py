@@ -28,6 +28,7 @@ class InheritPurchaseOrder(models.Model):
 
     can_edit = fields.Boolean(compute='_set_read_only')
 
+
     @api.depends('state')
     def _set_read_only(self):
         for rec in self:
