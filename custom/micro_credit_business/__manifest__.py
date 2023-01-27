@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "mime_task",
+    'name': "micro_credit_business",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -20,19 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'purchase'],
-    # purchase.access_mime_task_mime_task,mime_task.mime_task,model_mime_task_mime_task,base.group_user,1,1,1,1
+    'depends': ['base'],
 
     # always loaded
     'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        # 'views/views.xml',
-        # 'views/templates.xml',
-        'views/inherit_purchase_order.xml',
-        'views/inherit_res_users.xml',
-        # 'report/purchase_report.xml',
-        'report/purchase_order_report_custom.xml',
+        # 'security/ir.model.access.csv',
+        'views/views.xml',
+        'views/templates.xml',
+        'views/inherit_res_partner.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
