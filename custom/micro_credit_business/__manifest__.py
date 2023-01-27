@@ -24,10 +24,18 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
         'views/inherit_res_partner.xml',
+        'views/credit_account_view.xml',
+        'views/territory_view.xml',
+        'views/credit_entry_type.xml',
+        'views/duration_type.xml',
+        'views/collection_duration_type.xml',
+        'views/account_type.xml',
+        'views/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

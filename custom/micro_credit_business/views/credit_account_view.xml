@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="credit_account_view_view_form" model="ir.ui.view">
+        <field name="name">credit_account_view_view_form</field>
+        <field name="model">partner.credit.account</field>
+        <field name="arch" type="xml">
+            <form string="credit_account_view_form">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="0" placeholder="Account Name like AC-001"/>
+                        </h1>
+                        <!--                        <h3>-->
+                        <!--                            <field name="transaction_type" required="1"/>-->
+                        <!--                        </h3>-->
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" string="Account Holder" options="{'no_create': True, 'no_open': True}" />
+                            <field name="account_manager" string="Account Manager" options="{'no_create': True, 'no_open': True}" />
+                            <field name="book_no" />
+                        </group>
+                        <group>
+                            <field name="account_type_id" options="{'no_quick_create': True, 'no_open': True}"/>
+                            <field name="territory_id" options="{'no_quick_create': True, 'no_open': True}"/>
+                        </group>
+                        <group name="account_group" string="Finance">
+                            <field name="total_payed"/>
+                            <field name="total_received"/>
+                            <field name="risk_factor"/>
+                        </group>
+                        <group name="info" string="Last Loan Info">
+                            <field name="last_disbust_id" invisible="1"/>
+                            <field name="last_disbust_date" readonly="1" force_save="1"/>
+                            <field name="last_disbursed_amount" readonly="1" force_save="1"/>
+                            <field name="last_disbursed_paid" readonly="1" force_save="1"/>
+                            <field name="last_disbursed_remain" readonly="1" force_save="1"/>
+                            <field name="last_collection_date" readonly="1" force_save="1"/>
+                            <field name="last_collection_user" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="partner_credit_account_view_tree" model="ir.ui.view">
+        <field name="name">partner_credit_account_view_tree</field>
+        <field name="model">partner.credit.account</field>
+        <field name="arch" type="xml">
+            <tree string="partner_credit_account_tree">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="account_manager"/>
+                <field name="territory_id"/>
+                <field name="last_disbursed_amount"/>
+                <field name="last_disbursed_paid"/>
+                <field name="last_disbursed_remain"/>
+            </tree>
+        </field>
+    </record>
+    <record id="credit_account_action" model="ir.actions.act_window">
+        <field name="name">Credit Account</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.credit.account</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

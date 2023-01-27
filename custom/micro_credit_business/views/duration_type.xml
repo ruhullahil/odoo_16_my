@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_duration_type_view_form" model="ir.ui.view">
+        <field name="name">account_duration_type_view_form</field>
+        <field name="model">partner.account.duration.type</field>
+        <field name="arch" type="xml">
+            <form string="account_duration_type_form">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="0"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="duration_in_days"/>
+                        </group>
+                        <group>
+                            <field name="interest_rate"/>
+                            <field name="interest_rate_after_default"/>
+                        </group>
+
+                    </group>
+                    <group string="Description">
+                        <field name="description" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="duration_type_view_tree" model="ir.ui.view">
+        <field name="name">duration_type_view_tree</field>
+        <field name="model">partner.account.duration.type</field>
+        <field name="arch" type="xml">
+            <tree string="duration_type_tree">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="duration_in_days"/>
+                <field name="interest_rate"/>
+                <field name="interest_rate_after_default"/>
+            </tree>
+        </field>
+    </record>
+    <record id="duration_type_action" model="ir.actions.act_window">
+        <field name="name">Duration Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.account.duration.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

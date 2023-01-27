@@ -14,6 +14,7 @@ class AccountCreditLoan(models.Model):
     amount_disbust = fields.Float(string='Loan Amount' ,required=True)
     amount_payable = fields.Float(string='Payable amount',compute='_get_account_payable',store=True)
     date = fields.Date(required=True)
+    is_full_paid = fields.Boolean(default=False)
 
     @api.depends('amount_disbust','duration_type_id','duration_type_id.interest_rate')
     def _get_account_payable(self):

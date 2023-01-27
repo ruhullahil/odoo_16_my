@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="collection_duration_type_view_form" model="ir.ui.view">
+        <field name="name">collection_duration_type_view_form</field>
+        <field name="model">partner.collection.duration.type</field>
+        <field name="arch" type="xml">
+            <form string="collection_duration_type_form">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="0"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="duration_in_days"/>
+                        </group>
+                        <group>
+
+                        </group>
+
+                    </group>
+                    <group string="Description">
+                        <field name="description" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="collection_duration_type_view_tree" model="ir.ui.view">
+        <field name="name">collection_duration_type_view_tree</field>
+        <field name="model">partner.collection.duration.type</field>
+        <field name="arch" type="xml">
+            <tree string="collection_duration_type_tree">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="duration_in_days"/>
+            </tree>
+        </field>
+    </record>
+    <record id="collection_duration_action" model="ir.actions.act_window">
+        <field name="name">Collection Duration Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.collection.duration.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
