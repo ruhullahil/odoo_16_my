@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="instalment_conf_view_form" model="ir.ui.view">
+        <field name="name">instalment_conf_view_form</field>
+        <field name="model">interest.instalment.conf</field>
+        <field name="arch" type="xml">
+            <form string="instalment_conf_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="duration_type_id"/>
+                            <field name="collection_type_id"/>
+                        </group>
+                        <group>
+                            <field name="interest_rate"/>
+                            <field name="interest_rate_after_default"/>
+                            <field name="installment_count"/>
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="installment_conf_view_tree" model="ir.ui.view">
+        <field name="name">installment_conf_view_tree</field>
+        <field name="model">interest.instalment.conf</field>
+        <field name="arch" type="xml">
+            <tree string="installment_conf_tree">
+                <field name="duration_type_id"/>
+                <field name="collection_type_id"/>
+                <field name="installment_count"/>
+                <field name="interest_rate"/>
+                <field name="interest_rate_after_default"/>
+            </tree>
+        </field>
+    </record>
+    <record id="installment_configuration_action" model="ir.actions.act_window">
+        <field name="name">Instalment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">interest.instalment.conf</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

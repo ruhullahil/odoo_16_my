@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_credit_loan_view_form" model="ir.ui.view">
+        <field name="name">account_credit_loan_view_form</field>
+        <field name="model">account.credit.loan</field>
+        <field name="arch" type="xml">
+            <form string="account_credit_loan_form">
+                <header>
+                    <button name="btn_posted" type="object" string="Post" class="btn-primary" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="account_id" readonly="0"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="duration_type_id"/>
+                            <field name="collection_type_id"/>
+                            <field name="interest_rate"/>
+                            <field name="default_interest_rate"/>
+                            <field name="installment_count"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="amount_loan"/>
+                            <field name="amount_payable"/>
+                            <field name="installment_amount"/>
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="account_credit_loan_view_tree" model="ir.ui.view">
+        <field name="name">account_credit_loan_view_tree</field>
+        <field name="model">account.credit.loan</field>
+        <field name="arch" type="xml">
+            <tree string="account_credit_loan_tree">
+                <field name="account_id"/>
+                <field name="duration_type_id"/>
+                <field name="collection_type_id"/>
+                <field name="date"/>
+                <field name="amount_loan"/>
+                <field name="amount_payable"/>
+            </tree>
+        </field>
+    </record>
+    <record id="account_credit_loan_action" model="ir.actions.act_window">
+        <field name="name">Credit Loan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.credit.loan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

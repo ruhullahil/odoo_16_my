@@ -26,6 +26,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/seq.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/inherit_res_partner.xml',
@@ -35,6 +36,9 @@
         'views/duration_type.xml',
         'views/collection_duration_type.xml',
         'views/account_type.xml',
+        'views/account_credit_loan.xml',
+        'views/credit_balance_move.xml',
+        'views/installment_configuration.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

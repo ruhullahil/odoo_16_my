@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="credit_balance_move_view_form" model="ir.ui.view">
+        <field name="name">credit_balance_move_view_form</field>
+        <field name="model">credit.balance.move</field>
+        <field name="arch" type="xml">
+            <form string="credit_balance_move_form">
+                <header>
+                    <button name="btn_set_post" type="object" string="Post" class="btn-primary" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="payment_id" readonly="1" force_save="1" attrs="{ 'invisible': [('payment_id', '=', False)] }"/>
+                            <field name="entry_id" readonly="1" force_save="1" attrs="{ 'invisible': [('entry_id', '=', False)] }"/>
+                            <field name="loan_id" readonly="1" force_save="1" attrs="{ 'invisible': [('loan_id', '=', False)] }"/>
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="credit_bancance_move_view_tree" model="ir.ui.view">
+        <field name="name">credit_bancance_move_view_tree</field>
+        <field name="model">credit.balance.move</field>
+        <field name="arch" type="xml">
+            <tree string="credit_bancance_move_tree">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+    <record id="credit_balance_move_action" model="ir.actions.act_window">
+        <field name="name">Balance Movement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">credit.balance.move</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

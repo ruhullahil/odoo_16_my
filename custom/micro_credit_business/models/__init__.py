@@ -13,3 +13,4 @@ from . import account_credit_entry
 from . import credit_balance_move
 from . import account_credit_disburs
 from . import account_credit_payment
+from . import duration_and_payment_wise_interest_configuration

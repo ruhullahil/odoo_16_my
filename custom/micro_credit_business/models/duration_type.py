@@ -9,7 +9,7 @@ class AccountDurationType(models.Model):
     name = fields.Char(required=True)
     description = fields.Text()
     duration_in_days = fields.Integer(required=True)
-    interest_rate_after_default = fields.Float( required=True)
-    interest_rate = fields.Float(required=True)
+    interest_rate_after_default = fields.Float(required=False)
+    interest_rate = fields.Float(required=False)
     sequence = fields.Integer()
 
