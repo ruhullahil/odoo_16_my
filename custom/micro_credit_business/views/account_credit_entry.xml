@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="account_credit_payment_view_form" model="ir.ui.view">
-        <field name="name">account_credit_payment_view_form</field>
-        <field name="model">account.credit.payment</field>
+    <record id="account_credit_entry_view_form" model="ir.ui.view">
+        <field name="name">account_credit_entry_view_form</field>
+        <field name="model">account.credit.entry</field>
         <field name="arch" type="xml">
-            <form string="account_credit_payment_form">
+            <form string="account_credit_entry_form">
                 <header>
                     <button name="btn_posted" type="object" string="Post" class="btn-primary" states="draft"/>
                     <button name="button_reset_draft" type="object" string="Post" class="btn-primary" states="posted"/>
@@ -18,43 +18,40 @@
                     </div>
                     <group>
                         <group>
+                            <field name="entry_type_id" attrs="{'readonly':[('state','=','posted')]}"/>
                             <field name="account_id"  attrs="{'readonly':[('state','=','posted')]}"/>
-                            <field name="loan_id"  attrs="{'readonly':[('state','=','posted')]}"/>
-                            <field name="manager_id"  attrs="{'readonly':[('state','=','posted')]}"/>
-                            <field name="credit_move_id" readonly="1" force_save="1"  attrs="{'readonly':[('state','=','posted')]}"/>
+                            <field name="remarks"  attrs="{'readonly':[('state','=','posted')]}"/>
                         </group>
                         <group>
                             <field name="date"  attrs="{'readonly':[('state','=','posted')]}"/>
-                            <field name="amount_to_pay" readonly="1" force_save="1"  attrs="{'readonly':[('state','=','posted')]}"/>
-                            <field name="amount_paid"  attrs="{'readonly':[('state','=','posted')]}"/>
+                            <field name="amount"  attrs="{'readonly':[('state','=','posted')]}"/>
+                            <field name="balance_move_id" readonly="1" force_save="1" attrs="{'invisible':[('balance_move_id','=',False)]}"/>
                         </group>
-                        
+
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-    <record id="account_credit_payment_view_tree" model="ir.ui.view">
-        <field name="name">account_credit_payment_view_tree</field>
-        <field name="model">account.credit.payment</field>
+    <record id="account_credit_entry_view_tree" model="ir.ui.view">
+        <field name="name">account_credit_entry_view_tree</field>
+        <field name="model">account.credit.entry</field>
         <field name="arch" type="xml">
-            <tree string="account_credit_payment_view_tree" decoration-info="state == 'draft'" decoration-muted="state == 'posted'">
+            <tree string="account_credit_entry_tree" decoration-info="state == 'draft'" decoration-muted="state == 'posted'">
                 <field name="name"/>
-                <field name="manager_id" string="Manager Id"/>
-                <field name="account_id"/>
-                <field name="loan_id"/>
+                <field name="entry_type_id"/>
                 <field name="date"/>
-                <field name="amount_paid"/>
+                <field name="amount"/>
                 <field name="state" widget="badge"
                         decoration-info="state  == 'draft'"
                         decoration-success="state == 'posted'"/>
             </tree>
         </field>
     </record>
-    <record id="account_credit_payment_action" model="ir.actions.act_window">
-        <field name="name">Payment</field>
+    <record id="account_credit_entry_action" model="ir.actions.act_window">
+        <field name="name">Entry</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">account.credit.payment</field>
+        <field name="res_model">account.credit.entry</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

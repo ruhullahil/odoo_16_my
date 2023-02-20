@@ -8,6 +8,8 @@
         <menuitem id="menu_account_category_categ" name="Account" parent="menu_micro_finance_root" sequence="1"/>
         <menuitem id="menu_account_partner_credit" name="Account" parent="menu_account_category_categ" action="credit_account_action" sequence="1"/>
         <menuitem id="menu_account__credit_loan" name="Loan" parent="menu_account_category_categ" action="account_credit_loan_action" sequence="2"/>
+        <menuitem id="menu_account_credit_entry" name="Entry" parent="menu_account_category_categ" action="account_credit_entry_action" sequence="3"/>
+        <menuitem id="menu_account_credit_payment" name="payment" parent="menu_account_category_categ" action="account_credit_payment_action" sequence="2"/>
         <menuitem id="menu_credit_balance_move" name="Balance Moves" parent="menu_account_category_categ" action="credit_balance_move_action" sequence="20"/>
 
         <!-- configuration Menu s -->

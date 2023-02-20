@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "micro_credit_business",
+    'name': "new_micro_credit",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -24,24 +24,9 @@
 
     # always loaded
     'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'data/seq.xml',
+        # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/inherit_res_partner.xml',
-        'views/credit_account_view.xml',
-        'views/territory_view.xml',
-        'views/credit_entry_type.xml',
-        'views/duration_type.xml',
-        'views/collection_duration_type.xml',
-        'views/account_type.xml',
-        'views/account_credit_loan.xml',
-        'views/credit_balance_move.xml',
-        'views/installment_configuration.xml',
-        'views/account_credit_entry.xml',
-        'views/account_credit_payment.xml',
-        'views/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

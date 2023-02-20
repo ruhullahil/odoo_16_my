@@ -25,6 +25,7 @@ class PartnerCreditAccount(models.Model):
     last_collection_user = fields.Many2one('res.users')
     payment_ids = fields.One2many('account.credit.payment', 'account_id')
     loan_ids = fields.One2many('account.credit.loan', 'account_id')
+    saving_amount = fields.Float()
 
     @api.depends('partner_id')
     def _get_total_amount(self):
@@ -37,11 +38,10 @@ class PartnerCreditAccount(models.Model):
     def get_last_disbursed_info(self):
         for rec in self:
             rec.last_disbursed_paid = sum(
-                rec.payment_ids.filtered(lambda l: l.loan_id == rec.last_disbust_id.id and l.state == 'posted').mapped(
-                    'amount_paid')) if rec.last_disbust_id else 0.0
+                rec.payment_ids.filtered(lambda l: l.loan_id.id == rec.last_disbust_id.id and l.state == 'posted').mapped('amount_paid')) or 0.0
             rec.last_disbursed_remain = (rec.last_disbust_id.amount_payable - sum(
-                rec.payment_ids.filtered(lambda l: l.loan_id == rec.last_disbust_id.id and l.state == 'posted').mapped(
-                    'amount_paid'))) if rec.last_disbust_id else 0.0
+                rec.payment_ids.filtered(lambda l: l.loan_id.id == rec.last_disbust_id.id and l.state == 'posted').mapped(
+                    'amount_paid')) or 0.0 )
     def name_get(self):
         res = []
         for partner in self:

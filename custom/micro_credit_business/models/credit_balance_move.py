@@ -8,7 +8,7 @@ class CreditBalanceMove(models.Model):
     name = fields.Char(
         'Name', copy=False, required=True, readonly=True,
         default=lambda self: self.env['ir.sequence'].next_by_code('credit.balance.move'))
-    date = fields.Date(required=True,default=fields.date.today())
+    date = fields.Date(required=True, default=fields.date.today())
     active = fields.Boolean(default=True)
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -22,3 +22,11 @@ class CreditBalanceMove(models.Model):
     def btn_set_post(self):
         for rec in self:
             rec.state = 'posted'
+
+    def btn_rest_draft(self):
+        for rec in self:
+            rec.state = 'draft'
+
+    def btn_cancel(self):
+        for rec in self:
+            rec.active = False

@@ -17,10 +17,10 @@
                     </div>
                     <group>
                         <group>
-                            <field name="date"/>
+                            <field name="date" attrs="{'readonly':[('state','=','posted')]}"/>
                         </group>
                         <group>
-                            <field name="amount"/>
+                            <field name="amount" attrs="{'readonly':[('state','=','posted')]}"/>
                             <field name="payment_id" readonly="1" force_save="1" attrs="{ 'invisible': [('payment_id', '=', False)] }"/>
                             <field name="entry_id" readonly="1" force_save="1" attrs="{ 'invisible': [('entry_id', '=', False)] }"/>
                             <field name="loan_id" readonly="1" force_save="1" attrs="{ 'invisible': [('loan_id', '=', False)] }"/>
@@ -35,10 +35,13 @@
         <field name="name">credit_bancance_move_view_tree</field>
         <field name="model">credit.balance.move</field>
         <field name="arch" type="xml">
-            <tree string="credit_bancance_move_tree">
+            <tree string="credit_bancance_move_tree" decoration-info="state == 'draft'" decoration-muted="state == 'posted'" default_order="date, id">
                 <field name="name"/>
                 <field name="date"/>
-                <field name="amount"/>
+                <field name="amount" sum="Total Amount"/>
+                <field name="state" widget="badge"
+                        decoration-info="state  == 'draft'"
+                        decoration-success="state == 'posted'"/>
             </tree>
         </field>
     </record>

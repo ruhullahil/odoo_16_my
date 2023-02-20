@@ -7,6 +7,6 @@ class CreditEntryType(models.Model):
     _order = 'sequence'
 
     name = fields.Char(required=True)
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
     sequence = fields.Integer()
     type = fields.Selection([('income', 'Income'), ('expense', 'Expense')])
